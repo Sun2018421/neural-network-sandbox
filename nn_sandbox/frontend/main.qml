@@ -21,6 +21,7 @@ ApplicationWindow {
             Mlp {}
             Rbfn {}
             Som {}
+            Bp {}
         }
     }
 
