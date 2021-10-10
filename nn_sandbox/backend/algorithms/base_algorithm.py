@@ -20,7 +20,7 @@ class TraningAlgorithm(threading.Thread, abc.ABC):
 
 class PredictiveAlgorithm(TraningAlgorithm, abc.ABC):
     def __init__(self, dataset, total_epoches, most_correct_rate,
-                 initial_learning_rate, search_iteration_constant, test_ratio):
+                 initial_learning_rate, search_iteration_constant, test_ratio, need_best_neurons = True):
         super().__init__(dataset, total_epoches)
         self.training_dataset: np.ndarray = None
         self.testing_dataset: np.ndarray = None
@@ -28,8 +28,11 @@ class PredictiveAlgorithm(TraningAlgorithm, abc.ABC):
         self._initial_learning_rate = initial_learning_rate
         self._search_iteration_constant = search_iteration_constant
 
-        self._split_train_test(test_ratio=test_ratio)
-
+        if (test_ratio != 0):
+            self._split_train_test(test_ratio=test_ratio)
+        else :
+            self.training_dataset = dataset
+        self.need_best_neurons = need_best_neurons
         self.current_iterations = 0
         self.current_correct_rate = 0
         self.best_correct_rate = 0
@@ -40,13 +43,15 @@ class PredictiveAlgorithm(TraningAlgorithm, abc.ABC):
         for self.current_iterations in range(self._total_epoches * len(self.training_dataset)):
             if self._should_stop:
                 break
-            if self.current_iterations % len(self.training_dataset) == 0:
+            if ((self.training_dataset is not None)&(self.current_iterations % len(self.training_dataset) == 0)):
                 np.random.shuffle(self.training_dataset)
             self._iterate()
-            self._save_best_neurons()
+            if self.need_best_neurons:
+                self._save_best_neurons()
             if self._most_correct_rate and self.best_correct_rate >= self._most_correct_rate:
                 break
-        self._load_best_neurons()
+        if self.need_best_neurons:
+            self._load_best_neurons()
 
     def test(self):
         return self._correct_rate(self.testing_dataset)

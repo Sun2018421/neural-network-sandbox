@@ -8,20 +8,23 @@ import 'components/dashboards'
 ApplicationWindow {
     id: window
     visible: true
-    title: 'Neuron Network Sandbox'
+    title: 'Neuron Network Sandbox modified by Cru'
     // XXX: using body.implicitWidth will cause BadValue and BadWindow error in
     // Linux (Kubuntu). Need further research. Currently, I use
     // Component.onCompleted instead as a workaround.
+    
+    // locate: locate{100,200}
 
     Pane {
         id: body
         anchors.fill: parent
         NoteBook {
-            Perceptron {}
+            EEG {}
+            ANC {}
+            // Perceptron {}
             Mlp {}
             Rbfn {}
-            Som {}
-            Bp {}
+            // Som {}
         }
     }
 

@@ -295,6 +295,9 @@ Page {
         target: perceptronBridge
         // update the chart line series to the best synaptic weight at the end
         // of the training.
-        onHas_finishedChanged: dataChart.updateLineSeries()
+        // onHas_finishedChanged: dataChart.updateLineSeries()
+        function onHas_finishedChanged(){
+            dataChart.updateLineSeries()
+        }
     }
 }

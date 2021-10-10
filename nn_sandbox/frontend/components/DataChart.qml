@@ -12,13 +12,15 @@ ChartView {
     legend.visible: false
     ValueAxis{
         id: xAxis
-        min: -1.0
-        max: 1.0
+        titleText: 'Time'
+        min: 0.0
+        max: 0.5
     }
     ValueAxis{
         id: yAxis
-        min: -1.0
-        max: 1.0
+        titleText: 'Amplitude'
+        min: -2.0
+        max: 2.0
     }
     ToolTip {
         id: chartToolTip

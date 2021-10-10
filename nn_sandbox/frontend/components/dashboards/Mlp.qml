@@ -185,10 +185,14 @@ Page {
                     text: mlpBridge.current_iterations + 1
                     horizontalAlignment: Text.AlignHCenter
                     onTextChanged: () => {
+                        // rateChart.bestCorrectRate.append(
+                        //     mlpBridge.current_iterations + 1,
+                        //     mlpBridge.best_correct_rate
+                        // )
                         rateChart.bestCorrectRate.append(
                             mlpBridge.current_iterations + 1,
-                            mlpBridge.best_correct_rate
-                        )
+                            0.8
+                        )                        
                         rateChart.trainingCorrectRate.append(
                             mlpBridge.current_iterations + 1,
                             mlpBridge.current_correct_rate

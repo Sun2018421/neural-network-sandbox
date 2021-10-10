@@ -351,6 +351,9 @@ Page {
         target: rbfnBridge
         // update the chart scatter series to the best neurons at the end of the
         // training.
-        onHas_finishedChanged: dataChart.updateNeurons()
+        // onHas_finishedChanged: dataChart.updateNeurons()
+        function onHas_finishedChanged(){
+            dataChart.updateNeurons()
+        }
     }
 }

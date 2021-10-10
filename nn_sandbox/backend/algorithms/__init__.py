@@ -3,3 +3,4 @@ from .perceptron_algorithm import PerceptronAlgorithm
 from .mlp_algorithm import MlpAlgorithm
 from .rbfn_algorithm import RbfnAlgorithm
 from .som_algorithm import SomAlgorithm
+from .anc_algorithm import NcAlgorithm
